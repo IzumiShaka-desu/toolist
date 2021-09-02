@@ -7,4 +7,7 @@ class TasksRepository {
   Future<bool> add(Tasks newTask) async => _remoteTasksProvider.add(
         newTask,
       );
+  Future<bool> update(Tasks newTask) async => _remoteTasksProvider.update(
+        newTask,
+      );
 }
