@@ -19,6 +19,12 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
   final _pages = [Container(), Container()];
   List<Widget> get pages => _pages;
 
+  final _isMenuOpened = false.obs;
+  bool get isMenuOpened => _isMenuOpened.value;
+
+  void openMenu() => _isMenuOpened.value = true;
+  void closeMenu() => _isMenuOpened.value = false;
+
   @override
   void onInit() {
     _controller = TabController(
