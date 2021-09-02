@@ -26,4 +26,29 @@ class RemoteTasksProvider {
     }
     return true;
   }
+
+  Future<bool> update(Tasks newTask) async {
+    final data = newTask.toJson();
+    data.removeWhere((key, value) => value == null);
+    final res = await _client
+        .from(
+          _tableName,
+        )
+        .update(
+          data,
+        )
+        .eq(
+          'id',
+          newTask.id,
+        )
+        .execute();
+    if (res.error != null) {
+      DebugUtils.print(
+        className: 'RemoteTaskProvider',
+        message: res.error!.message,
+      );
+      return false;
+    }
+    return true;
+  }
 }
