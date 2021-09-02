@@ -9,6 +9,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.3.8
   get_storage: 2.0.3
+  flutter_dotenv: 5.0.2
   flutter: 
     sdk: flutter
 
