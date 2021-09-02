@@ -72,4 +72,27 @@ class RemoteTasksProvider {
     }
     return true;
   }
+
+  Future<List<Tasks>> get() async {
+    final result = await _client
+        .from(_tableName)
+        .select('*')
+        .order(
+          'due_date',
+        )
+        .execute();
+    if (result.error != null) {
+      DebugUtils.print(
+        className: 'RemoteTaskProvider',
+        message: result.error!.message,
+      );
+      return [];
+    }
+    final List data = result.data ?? [];
+    return data
+        .map(
+          (e) => Tasks.fromJson(e),
+        )
+        .toList();
+  }
 }
