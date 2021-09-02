@@ -21,7 +21,7 @@ class HomeContainer extends GetView<HomeController> {
           alignment: Alignment.topRight,
           scale: controller.isMenuOpened ? 0.85 : 1,
           child: AnimatedContainer(
-            duration: Duration(
+            duration: const Duration(
               milliseconds: 300,
             ),
             padding: EdgeInsets.all(
@@ -40,14 +40,14 @@ class HomeContainer extends GetView<HomeController> {
                 leading: const OpenMenuButton(),
                 actions: [
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.search,
                       color: Colors.grey,
                     ),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.notifications_none_outlined,
                       color: Colors.grey,
                     ),
