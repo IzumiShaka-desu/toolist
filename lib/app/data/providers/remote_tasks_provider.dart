@@ -51,4 +51,25 @@ class RemoteTasksProvider {
     }
     return true;
   }
+
+  Future<bool> delete(String idTask) async {
+    final res = await _client
+        .from(
+          _tableName,
+        )
+        .delete()
+        .eq(
+          'id',
+          idTask,
+        )
+        .execute();
+    if (res.error != null) {
+      DebugUtils.print(
+        className: 'RemoteTaskProvider',
+        message: res.error!.message,
+      );
+      return false;
+    }
+    return true;
+  }
 }
