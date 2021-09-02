@@ -10,7 +10,7 @@ class TabBarViewHome extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return TabBarView(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       controller: controller.tabController,
       children: controller.pages,
     );
