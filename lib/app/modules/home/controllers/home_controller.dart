@@ -52,5 +52,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
   // }
 
   @override
-  void onClose() {}
+  void onClose() {
+    _controller.dispose();
+  }
 }
