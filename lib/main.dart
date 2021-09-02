@@ -17,6 +17,8 @@ void main() async {
       title: 'Toolist',
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      defaultTransition: Transition.cupertino,
+      debugShowCheckedModeBanner: false,
     ),
   );
 }
