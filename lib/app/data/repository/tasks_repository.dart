@@ -10,4 +10,7 @@ class TasksRepository {
   Future<bool> update(Tasks newTask) async => _remoteTasksProvider.update(
         newTask,
       );
+  Future<bool> delete(String idTask) async => _remoteTasksProvider.delete(
+        idTask,
+      );
 }
