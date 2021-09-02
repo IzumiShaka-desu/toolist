@@ -10,7 +10,7 @@ class OpenMenuButton extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(
+      icon: const Icon(
         Icons.menu_rounded,
         color: Colors.grey,
       ),
