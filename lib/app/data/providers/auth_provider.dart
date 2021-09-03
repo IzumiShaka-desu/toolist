@@ -21,4 +21,20 @@ class AuthProvider {
 
     return Right(_result);
   }
+
+  Future<Either<String, GotrueSessionResponse>> login({
+    required String email,
+    required String password,
+  }) async {
+    final _result = await _client.auth.signIn(
+      email: email,
+      password: password,
+    );
+    if (_result.error != null) {
+      return Left(
+        _result.error!.message,
+      );
+    }
+    return Right(_result);
+  }
 }
