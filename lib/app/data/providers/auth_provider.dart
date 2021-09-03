@@ -37,4 +37,14 @@ class AuthProvider {
     }
     return Right(_result);
   }
+
+  Future<Either<String, GotrueResponse>> logout() async {
+    final _result = await _client.auth.signOut();
+    if (_result.error != null) {
+      return Left(
+        _result.error!.message,
+      );
+    }
+    return Right(_result);
+  }
 }
