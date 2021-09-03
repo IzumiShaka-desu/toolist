@@ -7,8 +7,11 @@ import 'package:supabase/supabase.dart';
 
 class AuthRepository {
   final AuthProvider _authProvider = Get.find();
+
   final GoTrueClient authClient = Get.find<SupabaseClient>().auth;
+
   final GetStorage _box = Get.find();
+
   Future<ResponseModel> register({
     required String email,
     required String password,
@@ -28,10 +31,12 @@ class AuthRepository {
           BoxKeys.token,
           r.data?.persistSessionString,
         );
+
         _box.write(
           BoxKeys.savedFName,
           fullname,
         );
+
         return ResponseModel(
           message: 'register success',
           result: true,
@@ -48,6 +53,7 @@ class AuthRepository {
       email: email,
       password: password,
     );
+
     return _result.fold(
       (l) => ResponseModel(
         message: l,
@@ -58,6 +64,7 @@ class AuthRepository {
           BoxKeys.token,
           r.data?.persistSessionString,
         );
+
         return ResponseModel(
           message: 'register success, please check your mail',
           result: true,
@@ -68,18 +75,22 @@ class AuthRepository {
 
   Future<ResponseModel> logout() async {
     final _result = await _authProvider.logout();
+
     return _result.fold(
-        (l) => ResponseModel(
-              message: l,
-              result: false,
-            ), (r) {
-      _box.remove(
-        BoxKeys.token,
-      );
-      return ResponseModel(
-        message: 'logout success',
-        result: true,
-      );
-    });
+      (l) => ResponseModel(
+        message: l,
+        result: false,
+      ),
+      (r) {
+        _box.remove(
+          BoxKeys.token,
+        );
+
+        return ResponseModel(
+          message: 'logout success',
+          result: true,
+        );
+      },
+    );
   }
 }
