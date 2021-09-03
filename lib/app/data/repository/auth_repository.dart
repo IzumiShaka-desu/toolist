@@ -39,4 +39,30 @@ class AuthRepository {
       },
     );
   }
+
+  Future<ResponseModel> login({
+    required String email,
+    required String password,
+  }) async {
+    final _result = await _authProvider.login(
+      email: email,
+      password: password,
+    );
+    return _result.fold(
+      (l) => ResponseModel(
+        message: l,
+        result: false,
+      ),
+      (r) {
+        _box.write(
+          BoxKeys.token,
+          r.data?.persistSessionString,
+        );
+        return ResponseModel(
+          message: 'register success, please check your mail',
+          result: true,
+        );
+      },
+    );
+  }
 }
