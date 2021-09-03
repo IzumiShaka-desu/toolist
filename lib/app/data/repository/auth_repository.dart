@@ -65,4 +65,21 @@ class AuthRepository {
       },
     );
   }
+
+  Future<ResponseModel> logout() async {
+    final _result = await _authProvider.logout();
+    return _result.fold(
+        (l) => ResponseModel(
+              message: l,
+              result: false,
+            ), (r) {
+      _box.remove(
+        BoxKeys.token,
+      );
+      return ResponseModel(
+        message: 'logout success',
+        result: true,
+      );
+    });
+  }
 }
