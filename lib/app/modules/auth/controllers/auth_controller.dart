@@ -21,9 +21,21 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
+    _initPageController();
     super.onInit();
   }
 
   @override
   void onClose() {}
+
+  void _initPageController() {
+    _pageController = PageController();
+    _pageController.addListener(
+      () {
+        if (_pageController.page != null) {
+          _currentPageValue.value = _pageController.page!;
+        }
+      },
+    );
+  }
 }
