@@ -88,7 +88,15 @@ class AuthController extends GetxController {
 
   register() {}
 
-  void toLoginPage() {}
+  void toLoginPage() => (!isLoading)
+      ? _pageController.animateToPage(
+          0,
+          duration: Duration(
+            milliseconds: 500,
+          ),
+          curve: _curveTransition,
+        )
+      : null;
 
   void toRegisterPage() {}
 }
