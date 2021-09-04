@@ -48,7 +48,15 @@ class AuthController extends GetxController {
   }
 
   @override
-  void onClose() {}
+  void onClose() {
+    loginTextController.forEach((key, value) {
+      value?.dispose();
+    });
+    registerTextController.forEach((key, value) {
+      value?.dispose();
+    });
+    _pageController.dispose();
+  }
 
   void _initPageController() {
     _pageController = PageController();
