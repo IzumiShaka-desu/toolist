@@ -135,7 +135,7 @@ class _FormDefaultState extends State<FormDefault> {
       fields.add(widget.widgetBeforeSubmitButton!);
     }
     fields.add(Container(
-      margin: widget.submitButtonMargin ?? EdgeInsets.only(top: 30),
+      margin: widget.submitButtonMargin ?? const EdgeInsets.only(top: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
