@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:toolist/app/core/utils/debug_utils.dart';
+import 'package:toolist/app/data/models/response_model.dart';
 import 'package:toolist/app/data/repository/auth_repository.dart';
 
 class AuthController extends GetxController {
@@ -97,7 +99,33 @@ class AuthController extends GetxController {
 
   login() {}
 
-  register() {}
+  void register() async {
+    _isLoading.value = true;
+    if (_validateRegisterForm()) {
+      try {
+        final _result = await Future.wait<ResponseModel>(
+          [
+            _authRepo.register(
+              fullname: fullnameRegister,
+              email: emailRegister,
+              password: passwordRegister,
+            ),
+          ],
+        );
+        _isLoading.value = false;
+        Get.snackbar(
+          'info',
+          _result.first.message,
+          colorText: Colors.white70,
+        );
+        _isSucessfull.value = _result.first.result;
+      } catch (e) {
+        _isLoading.value = false;
+        DebugUtils.print(className: 'register', message: '$e');
+      }
+    }
+    _isLoading.value = false;
+  }
 
   void toLoginPage() => (!isLoading)
       ? _pageController.animateToPage(
