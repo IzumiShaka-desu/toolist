@@ -20,7 +20,7 @@ class ToLoginButton extends GetView<AuthController> {
           child: InkWell(
             onTap: controller.toLoginPage,
             child: Container(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 30,
                 top: 20,
                 right: 20,
@@ -29,13 +29,13 @@ class ToLoginButton extends GetView<AuthController> {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white),
                 color: ColorPalette.primaryGreen,
-                borderRadius: BorderRadius.horizontal(
+                borderRadius: const BorderRadius.horizontal(
                   right: Radius.circular(
                     25,
                   ),
                 ),
               ),
-              child: Text.rich(
+              child: const Text.rich(
                 TextSpan(
                   children: [
                     TextSpan(
