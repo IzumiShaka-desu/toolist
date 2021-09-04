@@ -165,7 +165,7 @@ class AuthController extends GetxController {
   void toLoginPage() => (!isLoading)
       ? _pageController.animateToPage(
           0,
-          duration: Duration(
+          duration: const Duration(
             milliseconds: 500,
           ),
           curve: _curveTransition,
@@ -175,7 +175,7 @@ class AuthController extends GetxController {
   void toRegisterPage() => (!isLoading)
       ? _pageController.animateToPage(
           1,
-          duration: Duration(
+          duration: const Duration(
             milliseconds: 500,
           ),
           curve: _curveTransition,
