@@ -118,4 +118,23 @@ class AuthController extends GetxController {
           curve: _curveTransition,
         )
       : null;
+
+  bool _validateRegisterForm() {
+    if (!(emailRegister.isEmail)) {
+      Get.snackbar('Info', 'please input a valid email!',
+          colorText: Colors.white70);
+    } else if (passwordRegister.length < 6) {
+      Get.snackbar('Info', 'password cannot less than 6 characters',
+          colorText: Colors.white70);
+    } else if (passwordRegister != confirmPasswRegister) {
+      Get.snackbar('Info', 'confirm password are no same as password',
+          colorText: Colors.white70);
+    } else if (fullnameRegister.isEmpty) {
+      Get.snackbar('Info', 'fullname cannot be empty',
+          colorText: Colors.white70);
+    } else {
+      return true;
+    }
+    return false;
+  }
 }
