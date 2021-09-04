@@ -73,4 +73,14 @@ class AuthController extends GetxController {
       }
     });
   }
+
+  void reset() {}
+
+  login() {}
+
+  register() {}
+
+  void toLoginPage() {}
+
+  void toRegisterPage() {}
 }
