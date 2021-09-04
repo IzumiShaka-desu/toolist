@@ -21,15 +21,15 @@ class LoginFormView extends GetView<AuthController> {
                 margin: EdgeInsets.only(top: Get.height / 8),
                 child: Column(
                   children: [
-                    Container(
-                      child: Image.asset(
-                        'images/icon.png',
-                        width: 80,
-                      ),
+                    Image.asset(
+                      'images/icon.png',
+                      width: 80,
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(
+                      height: 25,
+                    ),
                     Container(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: ColorPalette.secondaryGreen,
                         borderRadius: BorderRadius.circular(25),
@@ -45,14 +45,16 @@ class LoginFormView extends GetView<AuthController> {
                         labelText: 'email',
                         textEditingController:
                             controller.loginTextController['email']!,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.email_outlined,
                         ),
                       ),
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(
+                      height: 25,
+                    ),
                     Container(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: ColorPalette.secondaryGreen,
                         borderRadius: BorderRadius.circular(25),
@@ -68,7 +70,7 @@ class LoginFormView extends GetView<AuthController> {
                         disableBorder: true,
                         textEditingController:
                             controller.loginTextController['password']!,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.password_outlined,
                         ),
                       ),
@@ -85,23 +87,23 @@ class LoginFormView extends GetView<AuthController> {
           child: Container(
             margin: EdgeInsets.only(top: Get.height * 0.58),
             child: InkWell(
-              onTap: () => (!controller.isLoading)
-                  ? controller.login()
-                  : {debugPrint('controller.isLoading')},
+              onTap: controller.login,
               child: AnimatedContainer(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
                 ),
-                padding: EdgeInsets.all(15),
-                duration: Duration(milliseconds: 200),
+                padding: const EdgeInsets.all(15),
+                duration: const Duration(
+                  milliseconds: 200,
+                ),
                 child: (controller.isLoading)
-                    ? SizedBox(
+                    ? const SizedBox(
                         height: 20,
                         width: 20,
                         child: CircularProgressIndicator(),
                       )
-                    : Text(
+                    : const Text(
                         '      Login        ',
                         style: TextStyle(
                           color: ColorPalette.primaryBlue,
