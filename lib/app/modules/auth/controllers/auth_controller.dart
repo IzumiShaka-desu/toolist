@@ -97,7 +97,38 @@ class AuthController extends GetxController {
     );
   }
 
-  login() {}
+  login() async {
+    _isLoading.value = true;
+    if (_validateLoginForm()) {
+      try {
+        final _result = await Future.wait<ResponseModel>(
+          [
+            _authRepo.login(
+              email: emailLogin,
+              password: passwordLogin,
+            ),
+          ],
+        );
+
+        _isLoading.value = false;
+
+        Get.snackbar(
+          'info',
+          _result.first.message,
+        );
+
+        _isSucessfull.value = _result.first.result;
+      } catch (e) {
+        _isLoading.value = false;
+
+        DebugUtils.print(
+          className: 'login',
+          message: '$e',
+        );
+      }
+    }
+    _isLoading.value = false;
+  }
 
   void register() async {
     _isLoading.value = true;
