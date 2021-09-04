@@ -147,6 +147,21 @@ class AuthController extends GetxController {
         )
       : null;
 
+  bool _validateLoginForm() {
+    if (!(emailLogin.isEmail)) {
+      Get.snackbar(
+        'Info',
+        'please input a valid email!',
+      );
+    } else if (passwordLogin.length < 6) {
+      Get.snackbar('Info', 'password cannot less than 6 characters',
+          colorText: Colors.white70);
+    } else {
+      return true;
+    }
+    return false;
+  }
+
   bool _validateRegisterForm() {
     if (!(emailRegister.isEmail)) {
       Get.snackbar('Info', 'please input a valid email!',
