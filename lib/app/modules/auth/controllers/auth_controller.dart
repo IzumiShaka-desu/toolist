@@ -82,7 +82,18 @@ class AuthController extends GetxController {
     });
   }
 
-  void reset() {}
+  void reset() {
+    loginTextController.forEach(
+      (key, value) {
+        value?.clear();
+      },
+    );
+    registerTextController.forEach(
+      (key, value) {
+        value?.clear();
+      },
+    );
+  }
 
   login() {}
 
