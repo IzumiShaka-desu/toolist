@@ -131,31 +131,33 @@ class AuthController extends GetxController {
   }
 
   void register() async {
-    _isLoading.value = true;
-    if (_validateRegisterForm()) {
-      try {
-        final _result = await Future.wait<ResponseModel>(
-          [
-            _authRepo.register(
-              fullname: fullnameRegister,
-              email: emailRegister,
-              password: passwordRegister,
-            ),
-          ],
-        );
-        _isLoading.value = false;
-        Get.snackbar(
-          'info',
-          _result.first.message,
-          colorText: Colors.white70,
-        );
-        _isSucessfull.value = _result.first.result;
-      } catch (e) {
-        _isLoading.value = false;
-        DebugUtils.print(className: 'register', message: '$e');
+    if (!isLoading) {
+      _isLoading.value = true;
+      if (_validateRegisterForm()) {
+        try {
+          final _result = await Future.wait<ResponseModel>(
+            [
+              _authRepo.register(
+                fullname: fullnameRegister,
+                email: emailRegister,
+                password: passwordRegister,
+              ),
+            ],
+          );
+          _isLoading.value = false;
+          Get.snackbar(
+            'info',
+            _result.first.message,
+            colorText: Colors.white70,
+          );
+          _isSucessfull.value = _result.first.result;
+        } catch (e) {
+          _isLoading.value = false;
+          DebugUtils.print(className: 'register', message: '$e');
+        }
       }
+      _isLoading.value = false;
     }
-    _isLoading.value = false;
   }
 
   void toLoginPage() => (!isLoading)

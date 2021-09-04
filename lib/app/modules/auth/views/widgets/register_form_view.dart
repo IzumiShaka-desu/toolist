@@ -23,18 +23,22 @@ class RegisterFormView extends GetView<AuthController> {
                 ),
                 child: Column(
                   children: [
-                    Container(
-                      child: Image.asset(
-                        'images/icon.png',
-                        width: 80,
-                      ),
+                    Image.asset(
+                      'images/icon.png',
+                      width: 80,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(
+                        4,
+                      ),
                       decoration: BoxDecoration(
                         color: ColorPalette.secondaryBLue,
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(
+                          25,
+                        ),
                       ),
                       width: Get.width * 0.7,
                       child: DefaultFormField(
@@ -45,14 +49,16 @@ class RegisterFormView extends GetView<AuthController> {
                         labelText: 'fullname',
                         textEditingController:
                             controller.registerTextController['fullname']!,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.person_outline,
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: ColorPalette.secondaryBLue,
                         borderRadius: BorderRadius.circular(25),
@@ -66,14 +72,16 @@ class RegisterFormView extends GetView<AuthController> {
                         labelText: 'email',
                         textEditingController:
                             controller.registerTextController['email']!,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.email_outlined,
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: ColorPalette.secondaryBLue,
                         borderRadius: BorderRadius.circular(25),
@@ -88,12 +96,18 @@ class RegisterFormView extends GetView<AuthController> {
                         labelText: 'password',
                         textEditingController:
                             controller.registerTextController['password']!,
-                        icon: Icon(Icons.password_outlined),
+                        icon: const Icon(
+                          Icons.password_outlined,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(
+                        4,
+                      ),
                       decoration: BoxDecoration(
                         color: ColorPalette.secondaryBLue,
                         borderRadius: BorderRadius.circular(25),
@@ -108,30 +122,32 @@ class RegisterFormView extends GetView<AuthController> {
                         labelText: 'confirm password',
                         textEditingController: controller
                             .registerTextController['confirm_password']!,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.password_outlined,
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     InkWell(
-                      onTap: () => (!controller.isLoading)
-                          ? controller.register()
-                          : {debugPrint('controller.isLoading')},
+                      onTap: controller.register,
                       child: AnimatedContainer(
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        padding: EdgeInsets.all(15),
-                        duration: Duration(milliseconds: 200),
+                        padding: const EdgeInsets.all(15),
+                        duration: const Duration(
+                          milliseconds: 200,
+                        ),
                         child: (controller.isLoading)
-                            ? SizedBox(
+                            ? const SizedBox(
                                 height: 20,
                                 width: 20,
                                 child: CircularProgressIndicator(),
                               )
-                            : Text(
+                            : const Text(
                                 '     Register       ',
                                 style: TextStyle(
                                   color: ColorPalette.primaryBlue,
