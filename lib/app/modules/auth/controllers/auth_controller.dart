@@ -43,6 +43,7 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     _initPageController();
+    _initTextController();
     super.onInit();
   }
 
@@ -58,5 +59,18 @@ class AuthController extends GetxController {
         }
       },
     );
+  }
+
+  void _initTextController() {
+    loginTextController.forEach((key, value) {
+      if (value == null) {
+        loginTextController[key] = TextEditingController();
+      }
+    });
+    registerTextController.forEach((key, value) {
+      if (value == null) {
+        registerTextController[key] = TextEditingController();
+      }
+    });
   }
 }
