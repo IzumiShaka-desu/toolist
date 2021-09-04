@@ -20,25 +20,27 @@ class AuthView extends GetView<AuthController> {
         ),
         Scaffold(
           body: Stack(
-            children: [
+            children: const [
               Positioned.fill(
-                child: Container(
-                  child: const FormAuthView(),
-                ),
+                child: FormAuthView(),
               ),
-              const ToLoginButton(),
-              const ToRegisterButton(),
+              ToLoginButton(),
+              ToRegisterButton(),
             ],
           ),
         ),
         Obx(
           () => AnimatedPositioned(
-            duration: Duration(milliseconds: 200),
+            duration: const Duration(
+              milliseconds: 200,
+            ),
             bottom: (controller.isSuccessfull) ? -Get.height : -2,
             right: (controller.isSuccessfull) ? -Get.width : -2,
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 250),
-              decoration: BoxDecoration(
+              duration: const Duration(
+                milliseconds: 250,
+              ),
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
@@ -46,7 +48,9 @@ class AuthView extends GetView<AuthController> {
               width: controller.isSuccessfull ? Get.width * 3 : 0,
               onEnd: () {
                 controller.reset();
-                Get.offAllNamed(Routes.HOME);
+                Get.offAllNamed(
+                  Routes.HOME,
+                );
               },
             ),
           ),
@@ -60,8 +64,8 @@ class AuthView extends GetView<AuthController> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircularProgressIndicator(),
-                      SizedBox(
+                      const CircularProgressIndicator(),
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
@@ -73,7 +77,7 @@ class AuthView extends GetView<AuthController> {
                     ],
                   ),
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ),
       ],
     );
