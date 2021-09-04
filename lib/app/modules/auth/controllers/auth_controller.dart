@@ -19,6 +19,27 @@ class AuthController extends GetxController {
   final _isSucessfull = false.obs;
   bool get isSuccessfull => _isSucessfull.value;
 
+  final loginTextController = <String, TextEditingController?>{
+    'password': null,
+    'email': null,
+  };
+
+  String get emailLogin => loginTextController['email']?.text ?? '';
+  String get passwordLogin => loginTextController['password']?.text ?? '';
+
+  final registerTextController = <String, TextEditingController?>{
+    'password': null,
+    'confirm_password': null,
+    'email': null,
+    'fullname': null,
+  };
+
+  String get emailRegister => registerTextController['email']?.text ?? '';
+  String get passwordRegister => registerTextController['password']?.text ?? '';
+  String get confirmPasswRegister =>
+      registerTextController['confirm_password']?.text ?? '';
+  String get fullnameRegister => registerTextController['fullname']?.text ?? '';
+
   @override
   void onInit() {
     _initPageController();
