@@ -51,7 +51,10 @@ class _DefaultFormFieldState extends State<DefaultFormField> {
         children: [
           Expanded(
             child: Theme(
-              data: widget.themeData ?? Theme.of(context),
+              data: widget.themeData ??
+                  Theme.of(
+                    context,
+                  ),
               child: TextFormField(
                 controller: widget.textEditingController,
                 obscureText: isObscure,
@@ -67,11 +70,13 @@ class _DefaultFormFieldState extends State<DefaultFormField> {
                           prefixIcon: widget.icon,
                           border: widget.disableBorder
                               ? InputBorder.none
-                              : OutlineInputBorder(),
+                              : const OutlineInputBorder(),
                           suffixIcon: widget.isObscure
                               ? IconButton(
                                   icon: AnimatedContainer(
-                                    duration: Duration(milliseconds: 350),
+                                    duration: const Duration(
+                                      milliseconds: 350,
+                                    ),
                                     child: isObscure
                                         ? Icon(
                                             Icons.visibility_outlined,
