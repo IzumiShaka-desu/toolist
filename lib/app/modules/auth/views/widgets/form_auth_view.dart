@@ -12,23 +12,27 @@ class FormAuthView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       controller: controller.pageController,
       itemCount: 2,
       itemBuilder: (context, position) {
-        return Obx(() {
-          return Transform.rotate(
-            angle: controller.currentPageValue - position,
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 200),
-              transformAlignment:
-                  position == 1 ? Alignment.topRight : Alignment.topLeft,
-              child: (position == 0)
-                  ? const LoginFormView()
-                  : const RegisterFormView(),
-            ),
-          );
-        });
+        return Obx(
+          () {
+            return Transform.rotate(
+              angle: controller.currentPageValue - position,
+              child: AnimatedContainer(
+                duration: const Duration(
+                  milliseconds: 200,
+                ),
+                transformAlignment:
+                    position == 1 ? Alignment.topRight : Alignment.topLeft,
+                child: (position == 0)
+                    ? const LoginFormView()
+                    : const RegisterFormView(),
+              ),
+            );
+          },
+        );
       },
     );
   }
