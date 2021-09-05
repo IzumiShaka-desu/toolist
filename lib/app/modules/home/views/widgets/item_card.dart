@@ -26,7 +26,9 @@ class ItemCard extends StatelessWidget {
         index: index,
         isPersonal: isPersonal,
         trailing: IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(
+            Icons.close,
+          ),
           onPressed: onClickRemove,
         ),
       ),
