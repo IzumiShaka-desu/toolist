@@ -33,7 +33,7 @@ class HomePage extends GetView<HomeController> {
               child: Row(
                 children: const [
                   Expanded(
-                    child: Card(),
+                    child: PersonalCard(),
                   ),
                   Expanded(
                     child: Card(),
@@ -217,6 +217,87 @@ class CircleCheckBox extends StatelessWidget {
                 color: Colors.transparent,
               ),
       ),
+    );
+  }
+}
+
+class PersonalCard extends GetView<HomeController> {
+  const PersonalCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+      color: ColorPalette.mainWhite,
+      child: Container(
+        padding: EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Obx(
+              () => CountTextView(
+                count: controller.personalTaskCount,
+              ),
+            ),
+            Text(
+              'Personal',
+              style: Get.textTheme.headline6?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Expanded(
+              child: Obx(
+                () => TaskProgress(
+                  val: controller.personalTaskDoneCount.toDouble(),
+                  max: controller.personalTaskCount.toDouble(),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TaskProgress extends StatelessWidget {
+  final Color color;
+  final double val;
+  final double max;
+
+  const TaskProgress(
+      {Key? key, this.color = Colors.blue, this.val = 0, this.max = 100})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return SliderTheme(
+      data: SliderTheme.of(context).copyWith(
+        thumbShape: SliderComponentShape.noThumb,
+      ),
+      child: Slider(
+          value: val,
+          focusNode: FocusNode(),
+          activeColor: color,
+          inactiveColor: color.withOpacity(0.3),
+          onChanged: (val) {},
+          max: max),
+    );
+  }
+}
+
+class CountTextView extends StatelessWidget {
+  const CountTextView({
+    Key? key,
+    required this.count,
+  }) : super(key: key);
+  final int count;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      '$count Tasks',
+      style: Get.textTheme.bodyText2?.copyWith(color: Colors.grey),
     );
   }
 }
