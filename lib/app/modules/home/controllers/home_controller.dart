@@ -140,7 +140,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
       ) {
         return ScaleTransition(
           scale: animation,
-          child: AddtaskView(),
+          child: const AddtaskView(),
         );
       },
     );
