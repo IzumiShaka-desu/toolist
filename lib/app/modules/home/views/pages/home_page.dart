@@ -15,12 +15,12 @@ class HomePage extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: ColorPalette.secondary,
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Text(
                 'What\'s up, ${controller.user?.userMetadata[BoxKeys.savedFName]}! ',
                 style: Get.textTheme.headline5?.copyWith(
@@ -29,7 +29,8 @@ class HomePage extends GetView<HomeController> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
+              width: Get.width,
               height: 100,
               child: Row(
                 children: const [
@@ -42,10 +43,10 @@ class HomePage extends GetView<HomeController> {
                 ],
               ),
             ),
-            Flexible(
+            const Flexible(
               child: TasksListView(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             )
           ],
@@ -54,7 +55,9 @@ class HomePage extends GetView<HomeController> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(15.0),
         child: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: const Icon(
+            Icons.add,
+          ),
           onPressed: controller.addTask,
           backgroundColor: ColorPalette.altBlue,
         ),
