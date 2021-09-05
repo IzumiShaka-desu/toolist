@@ -9,6 +9,8 @@ import 'package:toolist/app/modules/home/views/widgets/circle_check_box.dart';
 import 'package:toolist/app/modules/home/views/widgets/count_text_view.dart';
 import 'package:toolist/app/modules/home/views/widgets/item_card.dart';
 import 'package:toolist/app/modules/home/views/widgets/task_container.dart';
+import 'package:toolist/app/modules/home/views/widgets/task_progress.dart';
+import 'package:toolist/app/modules/home/views/widgets/tasks_list_view.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -66,55 +68,6 @@ class HomePage extends GetView<HomeController> {
   }
 }
 
-class TasksListView extends GetView<HomeController> {
-  const TasksListView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: PullWidget(
-        onLoad: (refreshController) {
-          refreshController.loadComplete();
-          // controller.loadTask().whenComplete(() =>
-          //  null);
-        },
-        onRefresh: (refreshController) {
-          controller.loadTasks().whenComplete(
-                () => refreshController.refreshCompleted(),
-              );
-        },
-        child: SingleChildScrollView(
-          child: Obx(
-            () => controller.isLoading
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : AnimatedList(
-                    shrinkWrap: true,
-                    reverse: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.all(8),
-                    key: controller.animateKey,
-                    initialItemCount: controller.taskList.length,
-                    itemBuilder: (BuildContext context, int index, anim) {
-                      Tasks item = controller.taskList.elementAt(index);
-                      bool isPersonal = item.type == TaskType.personal;
-                      return ItemCard(
-                        anim: anim,
-                        item: item,
-                        index: index,
-                        isPersonal: isPersonal,
-                        onClickRemove: () => controller.removeTask(index),
-                      );
-                    },
-                  ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class PersonalCard extends GetView<HomeController> {
   const PersonalCard({
     Key? key,
@@ -152,31 +105,6 @@ class PersonalCard extends GetView<HomeController> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class TaskProgress extends StatelessWidget {
-  final Color color;
-  final double val;
-  final double max;
-
-  const TaskProgress(
-      {Key? key, this.color = Colors.blue, this.val = 0, this.max = 100})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return SliderTheme(
-      data: SliderTheme.of(context).copyWith(
-        thumbShape: SliderComponentShape.noThumb,
-      ),
-      child: Slider(
-          value: val,
-          focusNode: FocusNode(),
-          activeColor: color,
-          inactiveColor: color.withOpacity(0.3),
-          onChanged: (val) {},
-          max: max),
     );
   }
 }
