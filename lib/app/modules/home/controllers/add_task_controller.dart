@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:toolist/app/core/utils/datetime_utils.dart';
+import 'package:toolist/app/data/models/tasks_model.dart';
 
 class AddtaskController extends GetxController {
   late final TextEditingController textEditingController;
@@ -14,6 +15,12 @@ class AddtaskController extends GetxController {
   bool get isToday => _date.value.isToday;
 
   bool get isTomorrow => _date.value.isTomorrow;
+
+  final _taskType = TaskType.personal.obs;
+
+  TaskType get taskType => _taskType.value;
+
+  set taskType(TaskType newType) => _taskType.value = newType;
 
   @override
   void onInit() {
