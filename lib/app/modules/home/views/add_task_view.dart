@@ -6,7 +6,9 @@ import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/modules/home/controllers/add_task_controller.dart';
 
 class AddtaskView extends GetView<AddtaskController> {
-  const AddtaskView({Key? key}) : super(key: key);
+  const AddtaskView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,9 @@ class AddtaskView extends GetView<AddtaskController> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Icon(Icons.calendar_today_outlined),
+                                    const Icon(
+                                      Icons.calendar_today_outlined,
+                                    ),
                                     const SizedBox(width: 5),
                                     Obx(
                                       () => Text(
@@ -156,7 +160,9 @@ class AddtaskView extends GetView<AddtaskController> {
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(
+                      15.0,
+                    ),
                     child: InkWell(
                       onTap: controller.add,
                       child: Container(
@@ -193,7 +199,9 @@ class AddtaskView extends GetView<AddtaskController> {
     DateTime? pickedDateTime = await showDialog<DateTime>(
       context: Get.context!,
       builder: (context) => SimpleDialog(
-        title: const Text('Select Date'),
+        title: const Text(
+          'Select Date',
+        ),
         children: [
           // ignore: sized_box_for_whitespace
           Container(
@@ -201,7 +209,11 @@ class AddtaskView extends GetView<AddtaskController> {
             child: CalendarDatePicker(
               initialDate: controller.date,
               firstDate: DateTime.now(),
-              lastDate: DateTime(2100),
+              lastDate: DateTime.now().add(
+                const Duration(
+                  days: 3600,
+                ),
+              ),
               onDateChanged: (DateTime value) {
                 Navigator.of(context).pop(value);
               },
