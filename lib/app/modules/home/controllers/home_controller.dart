@@ -9,7 +9,10 @@ import 'package:toolist/app/modules/home/views/pages/profile_page.dart';
 
 class HomeController extends GetxController with SingleGetTickerProviderMixin {
   final TasksRepository _repository = Get.find();
+
   final SupabaseClient _client = Get.find();
+
+  final animateKey = GlobalKey<AnimatedListState>();
 
   final _taskList = <Tasks>[].obs;
   List<Tasks> get taskList => _taskList;
