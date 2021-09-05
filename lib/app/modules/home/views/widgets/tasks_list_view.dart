@@ -11,6 +11,7 @@ class TasksListView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: PullWidget(
         onLoad: (refreshController) {
@@ -26,14 +27,14 @@ class TasksListView extends GetView<HomeController> {
         child: SingleChildScrollView(
           child: Obx(
             () => controller.isLoading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(),
                   )
                 : AnimatedList(
                     shrinkWrap: true,
                     reverse: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.all(8),
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: const EdgeInsets.all(8),
                     key: controller.animateKey,
                     initialItemCount: controller.taskList.length,
                     itemBuilder: (BuildContext context, int index, anim) {
