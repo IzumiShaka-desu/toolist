@@ -4,9 +4,11 @@ import 'package:supabase/supabase.dart';
 import 'package:toolist/app/core/utils/debug_utils.dart';
 import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/data/repository/tasks_repository.dart';
+import 'package:toolist/app/global_widget/molecules/confirm_dialog.dart';
 import 'package:toolist/app/modules/home/views/add_task_view.dart';
 import 'package:toolist/app/modules/home/views/pages/home_page.dart';
 import 'package:toolist/app/modules/home/views/pages/profile_page.dart';
+import 'package:toolist/app/modules/home/views/widgets/item_card.dart';
 
 class HomeController extends GetxController with SingleGetTickerProviderMixin {
   final TasksRepository _repository = Get.find();
@@ -142,7 +144,49 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
     }
   }
 
-  removeTask(int index) {}
+  removeTask(int index) async {
+    bool? _isConfirmed = await Get.dialog<bool>(
+      ConfirmDialogs(
+        title: 'warning',
+        message: 'are you sure wan\'t delete this item',
+      ),
+    );
+    try {
+      if (_isConfirmed ?? false) {
+        bool _result = await _repository.delete(
+          taskList
+              .elementAt(
+                index,
+              )
+              .id!,
+        );
+        if (_result) {
+          final deletedTasks = taskList.elementAt(
+            index,
+          );
+          animateKey.currentState?.removeItem(
+            index,
+            (context, anim) => ItemCard(
+              anim: anim,
+              item: deletedTasks,
+              index: index,
+              isPersonal:
+                  (deletedTasks.type ?? TaskType.personal) == TaskType.personal,
+              onClickRemove: () => removeTask(index),
+            ),
+          );
+          taskList.removeAt(
+            index,
+          );
+        }
+      }
+    } catch (e) {
+      DebugUtils.print(
+        className: 'removeTask',
+        message: '$e',
+      );
+    }
+  }
 
   updateState(int index) {}
 }
