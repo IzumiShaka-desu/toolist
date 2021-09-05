@@ -12,6 +12,7 @@ dependencies:
   flutter_dotenv: 5.0.2
   supabase: 0.2.5
   dartz: 0.10.0
+  pull_to_refresh: 2.0.0
   flutter: 
     sdk: flutter
 
