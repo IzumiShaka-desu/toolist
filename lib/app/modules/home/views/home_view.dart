@@ -8,7 +8,9 @@ import 'widgets/avatar_image.dart';
 import 'widgets/home_container.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +45,14 @@ class HomeView extends GetView<HomeController> {
                         height: 75,
                         width: Get.width * 0.5,
                       ),
-                      const VerticalDivider(thickness: 2),
+                      const VerticalDivider(
+                        thickness: 2,
+                      ),
                       Container(
-                        padding: const EdgeInsets.only(top: 20, left: 15),
+                        padding: const EdgeInsets.only(
+                          top: 20,
+                          left: 15,
+                        ),
                         child: Text(
                           // provider.currentUser.name,
                           'test',
@@ -88,7 +95,9 @@ class HomeView extends GetView<HomeController> {
                       ),
                       ListTile(
                         onTap: controller.logout,
-                        hoverColor: ColorPalette.mainBlue.withOpacity(0.9),
+                        hoverColor: ColorPalette.mainBlue.withOpacity(
+                          0.9,
+                        ),
                         leading: const Icon(
                           Icons.exit_to_app_outlined,
                           color: ColorPalette.mainWhite,
@@ -111,10 +120,15 @@ class HomeView extends GetView<HomeController> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                          color: ColorPalette.mainWhite.withOpacity(0.5)),
+                        color: ColorPalette.mainWhite.withOpacity(
+                          0.5,
+                        ),
+                      ),
                     ),
                     child: IconButton(
-                      icon: const Icon(Icons.chevron_left_outlined),
+                      icon: const Icon(
+                        Icons.chevron_left_outlined,
+                      ),
                       iconSize: 32,
                       onPressed: controller.closeMenu,
                       color: ColorPalette.mainWhite,
@@ -123,7 +137,9 @@ class HomeView extends GetView<HomeController> {
               AnimatedPositioned(
                 top: controller.isMenuOpened ? Get.height * 0.08 : 0,
                 left: controller.isMenuOpened ? Get.width * 0.6 : 0,
-                duration: const Duration(milliseconds: 250),
+                duration: const Duration(
+                  milliseconds: 250,
+                ),
                 child: const HomeContainer(),
               ),
             ],
