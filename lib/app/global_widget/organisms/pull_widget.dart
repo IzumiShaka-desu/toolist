@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class PullWidget extends StatefulWidget {
-  PullWidget({
+  const PullWidget({
     Key? key,
     required this.onLoad,
     required this.onRefresh,
@@ -39,8 +39,8 @@ class _PullWidgetState extends State<PullWidget>
     return SmartRefresher(
       enablePullDown: true,
       enablePullUp: widget.enableLoadMore,
-      header: ClassicHeader(),
-      footer: ClassicFooter(),
+      header: const ClassicHeader(),
+      footer: const ClassicFooter(),
       controller: _refreshController,
       onRefresh: () {
         widget.onRefresh(_refreshController);
