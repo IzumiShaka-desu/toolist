@@ -39,4 +39,28 @@ class AddtaskController extends GetxController {
     textEditingController.clear();
     taskType = TaskType.personal;
   }
+
+  void add() {
+    if (textEditingController.text.isEmpty) {
+      Get.snackbar(
+        'warning',
+        'task name cannot be null',
+      );
+    } else {
+      var newTask = Tasks(
+        dueDate: date.toIso8601String(),
+        taskName: textEditingController.text,
+        type: taskType,
+        isDone: false,
+      );
+
+      reset();
+
+      Navigator.of(
+        Get.context!,
+      ).pop(
+        newTask,
+      );
+    }
+  }
 }
