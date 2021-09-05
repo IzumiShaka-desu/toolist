@@ -7,6 +7,7 @@ import 'package:toolist/app/global_widget/organisms/pull_widget.dart';
 import 'package:toolist/app/modules/home/controllers/home_controller.dart';
 import 'package:toolist/app/modules/home/views/widgets/circle_check_box.dart';
 import 'package:toolist/app/modules/home/views/widgets/count_text_view.dart';
+import 'package:toolist/app/modules/home/views/widgets/task_container.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -141,47 +142,6 @@ class ItemCard extends StatelessWidget {
           onPressed: onClickRemove,
         ),
       ),
-    );
-  }
-}
-
-class TaskContainer extends GetView<HomeController> {
-  const TaskContainer({
-    Key? key,
-    required this.item,
-    required this.isPersonal,
-    required this.index,
-    this.trailing,
-  }) : super(key: key);
-
-  final Tasks item;
-  final int index;
-  final bool isPersonal;
-  final Widget? trailing;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: InkWell(
-          onTap: () => controller.updateState(index),
-          child: CircleCheckBox(
-            isChecked: item.isDone ?? false,
-            color: isPersonal ? ColorPalette.altBlue : ColorPalette.pink,
-          ),
-        ),
-        title: Text(
-          item.taskName ?? '',
-          style: Get.textTheme.bodyText1?.copyWith(
-              fontWeight: FontWeight.w500,
-              decoration: item.isDone ?? false
-                  ? TextDecoration.lineThrough
-                  : TextDecoration.none,
-              fontSize: 17),
-        ),
-        trailing: trailing ?? SizedBox(),
-      ),
-      color: ColorPalette.mainWhite,
     );
   }
 }
