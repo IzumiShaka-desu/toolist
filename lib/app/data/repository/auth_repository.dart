@@ -28,11 +28,6 @@ class AuthRepository {
       ),
       (r) {
         _box.write(
-          BoxKeys.token,
-          r.data?.persistSessionString,
-        );
-
-        _box.write(
           BoxKeys.savedFName,
           fullname,
         );

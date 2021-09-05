@@ -152,7 +152,7 @@ class AuthController extends GetxController {
             _result.first.message,
             colorText: Colors.white70,
           );
-          _isSucessfull.value = _result.first.result;
+          toLoginPage();
         } catch (e) {
           _isLoading.value = false;
           DebugUtils.print(className: 'register', message: '$e');
