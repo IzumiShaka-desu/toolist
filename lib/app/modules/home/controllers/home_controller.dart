@@ -4,6 +4,8 @@ import 'package:supabase/supabase.dart';
 import 'package:toolist/app/core/utils/debug_utils.dart';
 import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/data/repository/tasks_repository.dart';
+import 'package:toolist/app/modules/home/views/pages/home_page.dart';
+import 'package:toolist/app/modules/home/views/pages/profile_page.dart';
 
 class HomeController extends GetxController with SingleGetTickerProviderMixin {
   final TasksRepository _repository = Get.find();
@@ -18,7 +20,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
   late final TabController _controller;
   TabController get tabController => _controller;
 
-  final _pages = [Container(), Container()];
+  final _pages = [const HomePage(), ProfilePage()];
   List<Widget> get pages => _pages;
 
   final _isMenuOpened = false.obs;
@@ -67,4 +69,6 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
   }
 
   void logout() {}
+
+  void addTask() {}
 }
