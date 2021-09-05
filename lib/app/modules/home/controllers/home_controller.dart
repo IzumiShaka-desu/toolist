@@ -35,6 +35,8 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
   void openMenu() => _isMenuOpened.value = true;
   void closeMenu() => _isMenuOpened.value = false;
 
+  bool _isUpdating = false;
+
   User? get user => _client.auth.currentUser;
 
   int get personalTaskCount => _taskList
@@ -144,7 +146,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
     }
   }
 
-  removeTask(int index) async {
+  void removeTask(int index) async {
     bool? _isConfirmed = await Get.dialog<bool>(
       ConfirmDialogs(
         title: 'warning',
@@ -188,5 +190,27 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
     }
   }
 
-  updateState(int index) {}
+  void updateState(int index) async {
+    if (!_isUpdating) {
+      try {
+        _isUpdating = true;
+        var _newTask = taskList.elementAt(
+          index,
+        );
+        _newTask.isDone = !(_newTask.isDone ?? false);
+        final _result = await _repository.update(
+          _newTask,
+        );
+        if (_result) {
+          _taskList[index] = _newTask;
+        }
+      } catch (e) {
+        DebugUtils.print(
+          className: 'updateState',
+          message: '$e',
+        );
+      }
+      _isUpdating = false;
+    }
+  }
 }
