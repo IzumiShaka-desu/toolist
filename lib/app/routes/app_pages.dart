@@ -6,6 +6,7 @@ import 'package:toolist/app/modules/home/bindings/home_binding.dart';
 import 'package:toolist/app/modules/home/views/home_view.dart';
 
 part 'app_routes.dart';
+part 'middlewares.dart';
 
 class AppPages {
   AppPages._();
