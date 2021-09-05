@@ -33,4 +33,10 @@ class AddtaskController extends GetxController {
     textEditingController.dispose();
     super.onClose();
   }
+
+  void reset() {
+    dateTime = DateTime.now();
+    textEditingController.clear();
+    taskType = TaskType.personal;
+  }
 }
