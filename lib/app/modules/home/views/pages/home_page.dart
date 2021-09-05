@@ -5,6 +5,7 @@ import 'package:toolist/app/core/values/color_palette.dart';
 import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/global_widget/organisms/pull_widget.dart';
 import 'package:toolist/app/modules/home/controllers/home_controller.dart';
+import 'package:toolist/app/modules/home/views/widgets/coun_text_view.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -283,21 +284,6 @@ class TaskProgress extends StatelessWidget {
           inactiveColor: color.withOpacity(0.3),
           onChanged: (val) {},
           max: max),
-    );
-  }
-}
-
-class CountTextView extends StatelessWidget {
-  const CountTextView({
-    Key? key,
-    required this.count,
-  }) : super(key: key);
-  final int count;
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '$count Tasks',
-      style: Get.textTheme.bodyText2?.copyWith(color: Colors.grey),
     );
   }
 }
