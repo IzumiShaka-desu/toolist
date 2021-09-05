@@ -4,6 +4,7 @@ import 'package:supabase/supabase.dart';
 import 'package:toolist/app/core/utils/debug_utils.dart';
 import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/data/repository/tasks_repository.dart';
+import 'package:toolist/app/modules/home/views/add_task_view.dart';
 import 'package:toolist/app/modules/home/views/pages/home_page.dart';
 import 'package:toolist/app/modules/home/views/pages/profile_page.dart';
 
@@ -98,7 +99,48 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
 
   void logout() {}
 
-  void addTask() {}
+  void addTask() async {
+    final newTask = await showGeneralDialog<Tasks>(
+      context: Get.context!,
+      transitionDuration: Duration(
+        milliseconds: 400,
+      ),
+      pageBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+      ) {
+        return ScaleTransition(
+          scale: animation,
+          child: AddtaskView(),
+        );
+      },
+    );
+    if (newTask != null) {
+      newTask.id = '${user?.id}-${DateTime.now().microsecondsSinceEpoch}';
+
+      newTask.uid = user!.id;
+      try {
+        final _res = await _repository.add(
+          newTask,
+        );
+        Get.snackbar(
+          'info',
+          _res
+              ? 'success add new task'
+              : 'can\'t add new task please try again',
+        );
+        if (_res) {
+          taskList.add(newTask);
+          animateKey.currentState?.insertItem(
+            taskList.length - 1,
+          );
+        }
+      } catch (e) {
+        debugPrint('$e');
+      }
+    }
+  }
 
   removeTask(int index) {}
 
