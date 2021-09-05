@@ -8,6 +8,7 @@ import 'package:toolist/app/modules/home/controllers/home_controller.dart';
 import 'package:toolist/app/modules/home/views/widgets/circle_check_box.dart';
 import 'package:toolist/app/modules/home/views/widgets/count_text_view.dart';
 import 'package:toolist/app/modules/home/views/widgets/item_card.dart';
+import 'package:toolist/app/modules/home/views/widgets/personal_card.dart';
 import 'package:toolist/app/modules/home/views/widgets/task_container.dart';
 import 'package:toolist/app/modules/home/views/widgets/task_progress.dart';
 import 'package:toolist/app/modules/home/views/widgets/tasks_list_view.dart';
@@ -62,47 +63,6 @@ class HomePage extends GetView<HomeController> {
           child: Icon(Icons.add),
           onPressed: controller.addTask,
           backgroundColor: ColorPalette.altBlue,
-        ),
-      ),
-    );
-  }
-}
-
-class PersonalCard extends GetView<HomeController> {
-  const PersonalCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      color: ColorPalette.mainWhite,
-      child: Container(
-        padding: EdgeInsets.all(8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Obx(
-              () => CountTextView(
-                count: controller.personalTaskCount,
-              ),
-            ),
-            Text(
-              'Personal',
-              style: Get.textTheme.headline6?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Expanded(
-              child: Obx(
-                () => TaskProgress(
-                  val: controller.personalTaskDoneCount.toDouble(),
-                  max: controller.personalTaskCount.toDouble(),
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );
