@@ -17,7 +17,7 @@ class PersonalCard extends GetView<HomeController> {
       elevation: 2,
       color: ColorPalette.mainWhite,
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
