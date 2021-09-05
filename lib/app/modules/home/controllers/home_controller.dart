@@ -106,7 +106,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
 
   void logout() async {
     bool? _isConfimed = await Get.dialog<bool>(
-      ConfirmDialogs(
+      const ConfirmDialogs(
         message: 'are you sure wan\'t to logout your account?',
         title: 'warning',
       ),
@@ -130,7 +130,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
   void addTask() async {
     final newTask = await showGeneralDialog<Tasks>(
       context: Get.context!,
-      transitionDuration: Duration(
+      transitionDuration: const Duration(
         milliseconds: 400,
       ),
       pageBuilder: (
@@ -172,7 +172,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
 
   void removeTask(int index) async {
     bool? _isConfirmed = await Get.dialog<bool>(
-      ConfirmDialogs(
+      const ConfirmDialogs(
         title: 'warning',
         message: 'are you sure wan\'t delete this item',
       ),
