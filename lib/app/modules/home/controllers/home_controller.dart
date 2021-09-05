@@ -74,4 +74,8 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
   void logout() {}
 
   void addTask() {}
+
+  removeTask(int index) {}
+
+  updateState(int index) {}
 }
