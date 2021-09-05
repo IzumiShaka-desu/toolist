@@ -39,10 +39,23 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
         (element) => element.type == TaskType.personal,
       )
       .length;
+
   int get personalTaskDoneCount => _taskList
       .where(
         (element) =>
             element.type == TaskType.personal && (element.isDone ?? false),
+      )
+      .length;
+
+  int get businessTaskCount => _taskList
+      .where(
+        (element) => element.type == TaskType.business,
+      )
+      .length;
+  int get businessTaskDoneCount => _taskList
+      .where(
+        (element) =>
+            element.type == TaskType.business && (element.isDone ?? false),
       )
       .length;
 
