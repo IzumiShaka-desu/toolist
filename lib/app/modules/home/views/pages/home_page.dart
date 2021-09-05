@@ -5,6 +5,7 @@ import 'package:toolist/app/core/values/color_palette.dart';
 import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/global_widget/organisms/pull_widget.dart';
 import 'package:toolist/app/modules/home/controllers/home_controller.dart';
+import 'package:toolist/app/modules/home/views/widgets/circle_check_box.dart';
 import 'package:toolist/app/modules/home/views/widgets/count_text_view.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -181,43 +182,6 @@ class TaskContainer extends GetView<HomeController> {
         trailing: trailing ?? SizedBox(),
       ),
       color: ColorPalette.mainWhite,
-    );
-  }
-}
-
-class CircleCheckBox extends StatelessWidget {
-  final bool isChecked;
-  final Color color;
-
-  const CircleCheckBox({
-    Key? key,
-    this.isChecked = false,
-    this.color = ColorPalette.altBlue,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: Duration(milliseconds: 250),
-      child: Container(
-        decoration: BoxDecoration(
-          color: isChecked ? color.withOpacity(0.5) : ColorPalette.mainWhite,
-          border: Border.all(
-            color: isChecked ? color.withOpacity(0.1) : color,
-            width: 2,
-          ),
-          shape: BoxShape.circle,
-        ),
-        child: isChecked
-            ? Icon(
-                Icons.check,
-                color: ColorPalette.mainWhite,
-              )
-            : Icon(
-                Icons.circle,
-                color: Colors.transparent,
-              ),
-      ),
     );
   }
 }
