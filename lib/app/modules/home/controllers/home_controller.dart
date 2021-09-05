@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:supabase/supabase.dart';
 import 'package:toolist/app/core/utils/debug_utils.dart';
 import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/data/repository/tasks_repository.dart';
 
 class HomeController extends GetxController with SingleGetTickerProviderMixin {
   final TasksRepository _repository = Get.find();
+  final SupabaseClient _client = Get.find();
 
   final _taskList = <Tasks>[].obs;
   List<Tasks> get taskList => _taskList;
@@ -24,6 +26,8 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
 
   void openMenu() => _isMenuOpened.value = true;
   void closeMenu() => _isMenuOpened.value = false;
+
+  User? get user => _client.auth.currentUser;
 
   @override
   void onInit() {
