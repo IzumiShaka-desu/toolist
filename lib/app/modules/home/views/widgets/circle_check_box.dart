@@ -14,7 +14,9 @@ class CircleCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(
+        milliseconds: 250,
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: isChecked ? color.withOpacity(0.5) : ColorPalette.mainWhite,
@@ -25,11 +27,11 @@ class CircleCheckBox extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: isChecked
-            ? Icon(
+            ? const Icon(
                 Icons.check,
                 color: ColorPalette.mainWhite,
               )
-            : Icon(
+            : const Icon(
                 Icons.circle,
                 color: Colors.transparent,
               ),
