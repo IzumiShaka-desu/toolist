@@ -23,7 +23,7 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
   late final TabController _controller;
   TabController get tabController => _controller;
 
-  final _pages = [const HomePage(), ProfilePage()];
+  final _pages = [const HomePage(), const ProfilePage()];
   List<Widget> get pages => _pages;
 
   final _isMenuOpened = false.obs;
