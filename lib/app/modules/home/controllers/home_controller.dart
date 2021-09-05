@@ -34,6 +34,18 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
 
   User? get user => _client.auth.currentUser;
 
+  int get personalTaskCount => _taskList
+      .where(
+        (element) => element.type == TaskType.personal,
+      )
+      .length;
+  int get personalTaskDoneCount => _taskList
+      .where(
+        (element) =>
+            element.type == TaskType.personal && (element.isDone ?? false),
+      )
+      .length;
+
   @override
   void onInit() {
     _controller = TabController(
