@@ -5,7 +5,7 @@ import 'package:toolist/app/core/values/color_palette.dart';
 import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/global_widget/organisms/pull_widget.dart';
 import 'package:toolist/app/modules/home/controllers/home_controller.dart';
-import 'package:toolist/app/modules/home/views/widgets/coun_text_view.dart';
+import 'package:toolist/app/modules/home/views/widgets/count_text_view.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
