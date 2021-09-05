@@ -3,15 +3,18 @@ import 'package:get/get.dart';
 import 'package:supabase/supabase.dart';
 import 'package:toolist/app/core/utils/debug_utils.dart';
 import 'package:toolist/app/data/models/tasks_model.dart';
+import 'package:toolist/app/data/repository/auth_repository.dart';
 import 'package:toolist/app/data/repository/tasks_repository.dart';
 import 'package:toolist/app/global_widget/molecules/confirm_dialog.dart';
 import 'package:toolist/app/modules/home/views/add_task_view.dart';
 import 'package:toolist/app/modules/home/views/pages/home_page.dart';
 import 'package:toolist/app/modules/home/views/pages/profile_page.dart';
 import 'package:toolist/app/modules/home/views/widgets/item_card.dart';
+import 'package:toolist/app/routes/app_pages.dart';
 
 class HomeController extends GetxController with SingleGetTickerProviderMixin {
   final TasksRepository _repository = Get.find();
+  final AuthRepository _authRepository = Get.find();
 
   final SupabaseClient _client = Get.find();
 
@@ -101,7 +104,28 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
     _controller.dispose();
   }
 
-  void logout() {}
+  void logout() async {
+    bool? _isConfimed = await Get.dialog<bool>(
+      ConfirmDialogs(
+        message: 'are you sure wan\'t to logout your account?',
+        title: 'warning',
+      ),
+    );
+    if (_isConfimed ?? false) {
+      try {
+        final _result = await _authRepository.logout();
+        if (_result.result) {
+          Get.snackbar('info', _result.message);
+          Get.offAllNamed(Routes.AUTH);
+        }
+      } catch (e) {
+        DebugUtils.print(
+          className: 'logout',
+          message: '$e',
+        );
+      }
+    }
+  }
 
   void addTask() async {
     final newTask = await showGeneralDialog<Tasks>(
