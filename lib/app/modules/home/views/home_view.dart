@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:toolist/app/core/values/color_palette.dart';
-import 'package:toolist/app/modules/widgets/avatar_image.dart';
-import 'package:toolist/app/modules/widgets/home_container.dart';
 
 import '../controllers/home_controller.dart';
+import 'widgets/avatar_image.dart';
+import 'widgets/home_container.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);

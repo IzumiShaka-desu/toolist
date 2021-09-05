@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:toolist/app/core/values/color_palette.dart';
 import 'package:toolist/app/modules/home/controllers/home_controller.dart';
-import 'package:toolist/app/modules/widgets/tabbarview_home.dart';
 
 import 'open_menu_button.dart';
+import 'tabbarview_home.dart';
 
 class HomeContainer extends GetView<HomeController> {
   const HomeContainer({
