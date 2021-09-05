@@ -27,7 +27,7 @@ class ConfirmDialogs extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               PrimaryButton(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 20,
                 ),
                 text: 'yes',
@@ -35,7 +35,7 @@ class ConfirmDialogs extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () => Navigator.of(Get.context!).pop<bool>(false),
-                child: Text('No'),
+                child: const Text('No'),
               ),
             ],
           ),
