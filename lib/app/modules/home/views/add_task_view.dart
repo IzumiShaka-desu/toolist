@@ -6,6 +6,8 @@ import 'package:toolist/app/data/models/tasks_model.dart';
 import 'package:toolist/app/modules/home/controllers/add_task_controller.dart';
 
 class AddtaskView extends GetView<AddtaskController> {
+  const AddtaskView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -22,108 +24,106 @@ class AddtaskView extends GetView<AddtaskController> {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
-                          child: TextFormField(
-                            controller: controller.textEditingController,
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                              labelText: '         Enter New Task ',
-                              border: InputBorder.none,
-                            ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                        child: TextFormField(
+                          controller: controller.textEditingController,
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            labelText: '         Enter New Task ',
+                            border: InputBorder.none,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: setDate,
-                                child: Container(
-                                  padding: const EdgeInsets.fromLTRB(
-                                    8,
-                                    5,
-                                    8,
-                                    5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: setDate,
+                              child: Container(
+                                padding: const EdgeInsets.fromLTRB(
+                                  8,
+                                  5,
+                                  8,
+                                  5,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    15,
                                   ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      15,
-                                    ),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.calendar_today_outlined),
-                                      SizedBox(width: 5),
-                                      Obx(
-                                        () => Text(
-                                          controller.isToday
-                                              ? 'Today'
-                                              : controller.isTomorrow
-                                                  ? 'Tomorrow'
-                                                  : '${controller.date.day}/${controller.date.month}/${controller.date.year}',
-                                        ),
-                                      ),
-                                    ],
+                                  border: Border.all(
+                                    color: Colors.grey,
                                   ),
                                 ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.calendar_today_outlined),
+                                    const SizedBox(width: 5),
+                                    Obx(
+                                      () => Text(
+                                        controller.isToday
+                                            ? 'Today'
+                                            : controller.isTomorrow
+                                                ? 'Tomorrow'
+                                                : '${controller.date.day}/${controller.date.month}/${controller.date.year}',
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Obx(
-                          () => Row(
-                            children: [
-                              Radio<TaskType>(
-                                groupValue: controller.taskType,
-                                value: TaskType.personal,
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    controller.taskType = value;
-                                  }
-                                },
-                              ),
-                              InkWell(
-                                child: Text('Personal'),
-                                onTap: () {
-                                  controller.taskType = TaskType.personal;
-                                },
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Radio<TaskType>(
-                                groupValue: controller.taskType,
-                                value: TaskType.business,
-                                activeColor: ColorPalette.pink,
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    controller.taskType = value;
-                                  }
-                                },
-                              ),
-                              InkWell(
-                                child: Text('business'),
-                                onTap: () {
-                                  controller.taskType = TaskType.business;
-                                },
-                              ),
-                            ],
-                          ),
+                      ),
+                      Obx(
+                        () => Row(
+                          children: [
+                            Radio<TaskType>(
+                              groupValue: controller.taskType,
+                              value: TaskType.personal,
+                              onChanged: (value) {
+                                if (value != null) {
+                                  controller.taskType = value;
+                                }
+                              },
+                            ),
+                            InkWell(
+                              child: const Text('Personal'),
+                              onTap: () {
+                                controller.taskType = TaskType.personal;
+                              },
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Radio<TaskType>(
+                              groupValue: controller.taskType,
+                              value: TaskType.business,
+                              activeColor: ColorPalette.pink,
+                              onChanged: (value) {
+                                if (value != null) {
+                                  controller.taskType = value;
+                                }
+                              },
+                            ),
+                            InkWell(
+                              child: const Text('business'),
+                              onTap: () {
+                                controller.taskType = TaskType.business;
+                              },
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 90,
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        height: 90,
+                      ),
+                    ],
                   ),
                 ),
                 Align(
@@ -140,7 +140,7 @@ class AddtaskView extends GetView<AddtaskController> {
                           shape: BoxShape.circle,
                         ),
                         child: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.close_outlined,
                             size: 30,
                           ),
@@ -160,7 +160,7 @@ class AddtaskView extends GetView<AddtaskController> {
                     child: InkWell(
                       onTap: controller.add,
                       child: Container(
-                        padding: EdgeInsets.fromLTRB(
+                        padding: const EdgeInsets.fromLTRB(
                           30,
                           15,
                           30,
@@ -193,7 +193,7 @@ class AddtaskView extends GetView<AddtaskController> {
     DateTime? pickedDateTime = await showDialog<DateTime>(
       context: Get.context!,
       builder: (context) => SimpleDialog(
-        title: Text('Select Date'),
+        title: const Text('Select Date'),
         children: [
           // ignore: sized_box_for_whitespace
           Container(
