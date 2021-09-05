@@ -40,7 +40,7 @@ class TaskContainer extends GetView<HomeController> {
                   : TextDecoration.none,
               fontSize: 17),
         ),
-        trailing: trailing ?? SizedBox(),
+        trailing: trailing ?? const SizedBox(),
       ),
       color: ColorPalette.mainWhite,
     );
